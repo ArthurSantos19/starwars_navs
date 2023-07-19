@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
-export const CardBody = styled.div`
-    width: 40%;
-    display: grid;
-    grid-template-columns: repeat(3, 2fr);
-    grid-gap: 1rem;
-    box-sizing: border-box;
-    justify-content: center;
+export const MainContainer = styled.section`
+    margin-top: 2rem;
+    width: 70%;
+`;
 
-    margin-top: 5rem;
+export const CardBody = styled.div`
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1rem;
+    margin-top: 1.5rem;
+    justify-items: center
 `
 
 export const CardNav = styled.div`
@@ -16,7 +19,7 @@ export const CardNav = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70%;
+    width: 45%;
     height: 200px;
     aspect-ratio: 2/1;
 
@@ -26,7 +29,6 @@ export const CardNav = styled.div`
     box-sizing: border-box;
     margin: 1rem 0;
     background: white;
-    /* overflow: hidden; */
 
     &:hover {
         transform: scale(1.1);
@@ -35,6 +37,7 @@ export const CardNav = styled.div`
 
     h3 {
         margin-bottom: 1rem;
+        background:white ;
     }
 
     img {

@@ -1,9 +1,12 @@
 import axios from 'axios'
-import { useState } from 'react';
-import { CardNav, CardBody } from './styles';
+import { useEffect, useState } from 'react';
+import { CardNav, CardBody, MainContainer } from './styles';
+import { makeObservable, observable, action } from 'mobx';
 
 import SandCrawler from '../assets/sandcrawler.jpg'
 import t16 from '../assets/t16.jpg'
+import x34 from '../assets/x-34.png'
+import tie from '../assets/tie.png'
 
 interface Vehicle {
     name: string;
@@ -26,25 +29,54 @@ interface Vehicle {
 
   const imageMap: Record<string, string> = {
     "Sand Crawler": SandCrawler,
-    "T-16 skyhopper": t16
+    "T-16 skyhopper": t16,
+    "X-34 landspeeder": x34,
+    "TIE bomber": tie
+
   }
 
-  export function Veiculos() {
-    const [veiculos, setVeiculos] = useState<Vehicle[]>([]);
+  class VeiculosStore {
+    veiculos: Vehicle[]= [];
 
-    axios.get('https://swapi.dev/api/vehicles/')
-    .then(response => {
-        setVeiculos(response.data.results)
-        console.log(response.data)
-    })
-    .catch(error => {
-        console.error(error);
-    })
+    constructor() {
+        makeObservable(this, {
+            veiculos: observable,
+            setVeiculos: action,
+        });
+    }
+
+    setVeiculos(veiculos: Vehicle[]) {
+        this.veiculos = veiculos
+    }
+  }
+
+  const veiculosStore = new VeiculosStore
+
+  export function Veiculos() {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        axios
+            .get('https://swapi.dev/api/vehicles/')
+            .then(response => {
+            veiculosStore.setVeiculos(response.data.results);
+            setLoading(false);
+            console.log(response.data);
+            })
+            .catch(error => {
+            console.error(error);
+            setLoading(false);
+            });
+        }, []);
+
+    if(loading) {
+        return <div>Loading...</div>
+    }
+
     return (
-    <>
-        <div style={{color: 'red'}}>Escolha sua nave</div>
+    <MainContainer>
         <CardBody>
-            {veiculos.map(veiculo => {
+            {veiculosStore.veiculos.map(veiculo => {
                 const imagem = imageMap[veiculo.name];
                 return (
                     <CardNav key={veiculo.url}>
@@ -55,6 +87,6 @@ interface Vehicle {
                 );
         })}
         </CardBody>
-    </>
+    </MainContainer>
     )
   }

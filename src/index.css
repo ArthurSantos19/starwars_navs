@@ -1,6 +1,14 @@
-
 body {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
   flex-direction: column;
   background-image: url('/public/planofundo.png');
+  font-family: 'Baloo 2', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
 }
