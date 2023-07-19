@@ -16,4 +16,9 @@ export const HeaderContainer = styled.header`
     align-items: center;
     text-align: center;
     gap: 5rem;
+
+    img {
+        max-width: 90%;
+        height: 100%;
+    }
 `

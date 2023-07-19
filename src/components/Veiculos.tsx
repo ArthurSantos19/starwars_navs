@@ -7,6 +7,7 @@ import SandCrawler from '../assets/sandcrawler.jpg'
 import t16 from '../assets/t16.jpg'
 import x34 from '../assets/x-34.png'
 import tie from '../assets/tie.png'
+import { Modal } from './Modal/Modal';
 
 interface Vehicle {
     name: string;
@@ -75,6 +76,7 @@ interface Vehicle {
 
     return (
     <MainContainer>
+        <Modal />
         <CardBody>
             {veiculosStore.veiculos.map(veiculo => {
                 const imagem = imageMap[veiculo.name];
