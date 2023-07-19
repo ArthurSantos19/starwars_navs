@@ -12,3 +12,14 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Ajuste o valor do z-index conforme necessário para que o fundo escuro fique acima do conteúdo */
+}
+

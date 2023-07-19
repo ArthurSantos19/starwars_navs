@@ -1,6 +1,7 @@
 import { ButtonAdd, ButtonCancel, FooterContainer, HeaderModal, MainModal, ModalContainer, SubMenu } from "./styles";
+import { ModalProps } from "../Veiculos";
 
-export function Modal() {
+export function Modal({closeModal}: ModalProps) {
     return(
         <ModalContainer>
             <HeaderModal>Nome da nave</HeaderModal>
@@ -10,7 +11,7 @@ export function Modal() {
             </MainModal>
             <FooterContainer>
                 <ButtonAdd>Adicionar</ButtonAdd>
-                <ButtonCancel>Cancelar</ButtonCancel>
+                <ButtonCancel onClick={closeModal}>Cancelar</ButtonCancel>
                 </FooterContainer>
         </ModalContainer>
     )
