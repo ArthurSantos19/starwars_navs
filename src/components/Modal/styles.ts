@@ -14,6 +14,7 @@ export const ModalContainer = styled.div`
     background: white;
     z-index: 100;
     border-radius: 6px;
+    border: 3px solid #DAA520;
 `
 
 export const HeaderModal = styled.header`
@@ -57,10 +58,16 @@ export const ButtonAdd = styled.button`
     width: 30%;
     height: 25%;
     padding: 1rem;
-    background-color: green;
+    background-color: #008000;
     color: white;
     border-radius: 8px;
     border: none;
+    cursor: pointer;
+
+    &:hover {
+        background: #32CD32;
+    } 
+    
 `
 
 export const ButtonCancel = styled.button`
@@ -70,8 +77,13 @@ export const ButtonCancel = styled.button`
     width: 30%;
     height: 25%;
     padding: 1rem;
-    background-color: red;
+    background-color: #800000;
     color: white;
     border-radius: 8px;
     border: none;
+    cursor: pointer;
+
+    &:hover {
+        background: #FF0000;
+    } 
 `

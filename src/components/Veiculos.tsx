@@ -38,7 +38,6 @@ interface Vehicle {
     "T-16 skyhopper": t16,
     "X-34 landspeeder": x34,
     "TIE bomber": tie
-
   }
 
   class VeiculosStore {
@@ -56,25 +55,34 @@ interface Vehicle {
     }
   }
 
-  const veiculosStore = new VeiculosStore
+  const veiculosStore = new VeiculosStore;
 
   export function Veiculos() {
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
 
+    const fetchVeiculos = () => {
+      setLoading(true);
+      const apiUrl = 'https://swapi.dev/api/vehicles/';
+      const uniqueKey = new Date().getTime();
+      const urlWithKey = `${apiUrl}?key=${uniqueKey}`;
+
+      axios
+        .get(urlWithKey)
+        .then(response => {
+        veiculosStore.setVeiculos(response.data.results);
+        setLoading(false);
+        console.log(response.data);
+        })
+        .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
+    }
+
     useEffect(() => {
-        axios
-            .get('https://swapi.dev/api/vehicles/')
-            .then(response => {
-            veiculosStore.setVeiculos(response.data.results);
-            setLoading(false);
-            console.log(response.data);
-            })
-            .catch(error => {
-            console.error(error);
-            setLoading(false);
-            });
-        }, []);
+      fetchVeiculos();
+    }, []);
 
     if(loading) {
         return <div>Loading...</div>
