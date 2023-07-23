@@ -6,7 +6,7 @@ export const ModalContainer = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     width: 40vw;
-    height: 50vh;
+    height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -33,6 +33,29 @@ export const MainModal = styled.div`
     background: white;
 `
 
+export const SubMenuImg = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+    background-color: white;
+
+    img {
+        width: 11.5rem;
+        height: 11.5rem;
+    }
+
+`
+
+export const DivDeta = styled.div`
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+`
+
 export const SubMenu = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,6 +63,13 @@ export const SubMenu = styled.div`
     width: 50%;
     height: auto;
     background-color: white;
+    /* border: 1px solid #DAA520; */
+    border-radius: 8px;
+
+    p {
+        font-family: 'Times New Roman', Times, serif;
+        margin: 4px 2px;
+    }
 `
 
 export const FooterContainer = styled.div`

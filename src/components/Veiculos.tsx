@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { CardNav, CardBody, MainContainer } from './styles';
 import { makeObservable, observable, action } from 'mobx';
 
@@ -31,9 +31,10 @@ interface Vehicle {
 
   export interface ModalProps {
     closeModal: () => void;
+    vehicle: Vehicle | null;
   }
 
-  const imageMap: Record<string, string> = {
+  export const imageMap: Record<string, string> = {
     "Sand Crawler": SandCrawler,
     "T-16 skyhopper": t16,
     "X-34 landspeeder": x34,
@@ -60,6 +61,7 @@ interface Vehicle {
   export function Veiculos() {
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
+    const [selectVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
     const fetchVeiculos = () => {
       setLoading(true);
@@ -88,9 +90,16 @@ interface Vehicle {
         return <div>Loading...</div>
     }
 
-    const handleCardClick = () => {
-        setModalOpen(true);
-      };
+    const handleCardClick: MouseEventHandler<HTMLDivElement> = (event) => { // Ajuste o tipo da função
+      if (event.currentTarget instanceof HTMLElement) {
+        const veiculoName = event.currentTarget.getAttribute('data-veiculo-name');
+        const veiculo = veiculosStore.veiculos.find((veiculo) => veiculo.name === veiculoName);
+        if (veiculo) {
+          setSelectedVehicle(veiculo);
+          setModalOpen(true);
+        }
+      }
+    };
 
     const closeModal = () => {
     setModalOpen(false);
@@ -98,12 +107,12 @@ interface Vehicle {
 
     return (
     <MainContainer>
-        {modalOpen && <Modal closeModal={closeModal} />}
+        {modalOpen && <Modal closeModal={closeModal} vehicle={selectVehicle}/>}
         <CardBody>
             {veiculosStore.veiculos.map(veiculo => {
                 const imagem = imageMap[veiculo.name];
                 return (
-                    <CardNav key={veiculo.url} onClick={handleCardClick}>
+                    <CardNav key={veiculo.url} onClick={handleCardClick} data-veiculo-name={veiculo.name}>
                         <h3>{veiculo.name}</h3>
                         {imagem && <img src={imagem} alt={veiculo.name}/>}
                        
