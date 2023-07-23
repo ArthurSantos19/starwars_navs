@@ -56,6 +56,15 @@ export const DivDeta = styled.div`
     justify-content: center;
 `
 
+export const DivPrec = styled.div`
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #F0E68C;
+    border-radius: 8px;
+`
+
 export const SubMenu = styled.div`
     display: flex;
     flex-direction: column;
@@ -68,7 +77,7 @@ export const SubMenu = styled.div`
 
     p {
         font-family: 'Times New Roman', Times, serif;
-        margin: 4px 2px;
+        margin: 4px 4px;
     }
 `
 

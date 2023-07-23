@@ -1,4 +1,4 @@
-import { ButtonAdd, ButtonCancel, FooterContainer, HeaderModal, MainModal, ModalContainer, SubMenu, SubMenuImg, DivDeta } from "./styles";
+import { ButtonAdd, ButtonCancel, FooterContainer, HeaderModal, MainModal, ModalContainer, SubMenu, SubMenuImg, DivDeta, DivPrec } from "./styles";
 import { ModalProps } from "../Veiculos";
 import { imageMap } from "../Veiculos";
 
@@ -10,12 +10,12 @@ export function Modal({closeModal, vehicle}: ModalProps) {
             <MainModal>
                 <SubMenuImg>{imageMap[imageName] && <img src={imageMap[imageName]} alt={imageName} />}</SubMenuImg>
                 <SubMenu>
-                    <h4>Detalhes técnicos:</h4>
+                    Detalhes técnicos:
                     <DivDeta>Modelo: <p> {vehicle?.model}</p></DivDeta>
                     <DivDeta>Tamanho: <p>{vehicle?.length}</p></DivDeta>
                     <DivDeta>Passageiros: <p> {vehicle?.passengers}</p></DivDeta>
-                    <DivDeta>Equipe: <p>{vehicle?.crew}</p></DivDeta>
                     <DivDeta>Capacidade de carga: <p> {vehicle?.cargo_capacity}</p></DivDeta>
+                    <DivPrec>Preço: <p> 800</p></DivPrec>
                     
                 </SubMenu>
             </MainModal>
